@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haroon Ahmed — IT Student &amp; Cybersecurity Enthusiast</title>
+<meta name="description" content="Portfolio of Haroon Ahmed, BS Information Technology student and aspiring cybersecurity professional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23060907'/%3E%3Ctext x='50' y='64' font-size='42' font-family='monospace' fill='%2339ff9e' text-anchor='middle'%3EHA%3C/text%3E%3C/svg%3E">
+<style>
+/* ================= TOKENS ================= */
+:root{
+  --bg:#060a08;
+  --bg-2:#0a0f0c;
+  --panel:#0d1512;
+  --panel-2:#101a15;
+  --border:rgba(57,255,158,.16);
+  --border-strong:rgba(57,255,158,.38);
+  --green:#39ff9e;
+  --green-dim:#1fae6c;
+  --green-deep:#0a5c39;
+  --blue:#4fc9ff;
+  --blue-dim:#1c86b3;
+  --text:#eef4f0;
+  --text-dim:#93a89f;
+  --text-faint:#5d7369;
+  --danger:#ff6b6b;
+  --radius:14px;
+  --radius-sm:8px;
+  --maxw:1180px;
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--green);color:#04140c;}
+::-webkit-scrollbar{width:9px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--green-deep);border-radius:10px;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;}
+h1,h2,h3,h4{font-family:var(--font-display);margin:0;font-weight:600;letter-spacing:-0.01em;}
+p{margin:0;}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+.section{padding:120px 0;position:relative;}
+@media(max-width:780px){.section{padding:80px 0;}}
+.section-head{max-width:620px;margin-bottom:56px;}
+.section-tag{font-family:var(--font-mono);font-size:13px;color:var(--green);display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.section-tag::before{content:'';width:22px;height:1px;background:var(--green);display:inline-block;}
+.section-head h2{font-size:clamp(28px,4vw,40px);color:var(--text);}
+.section-head p{color:var(--text-dim);margin-top:14px;font-size:16px;}
+
+/* glass card */
+.glass{
+  background:linear-gradient(180deg,rgba(16,26,21,.75),rgba(10,16,13,.85));
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  position:relative;
+}
+.glass::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;
+  background:linear-gradient(135deg,rgba(57,255,158,.35),rgba(79,201,255,.08) 40%,transparent 70%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+}
+.glow-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 26px;border-radius:999px;
+  font-weight:600;font-size:14.5px;cursor:pointer;border:1px solid transparent;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.btn-primary{background:var(--green);color:#04140c;box-shadow:0 0 0 rgba(57,255,158,0);}
+.btn-primary:hover{box-shadow:0 0 28px rgba(57,255,158,.45);transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--border-strong);}
+.btn-ghost:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px);}
+.btn-blue{background:transparent;color:var(--blue);border-color:rgba(79,201,255,.4);}
+.btn-blue:hover{box-shadow:0 0 22px rgba(79,201,255,.35);transform:translateY(-2px);}
+.btn-sm{padding:8px 16px;font-size:13px;border-radius:8px;}
+.btn-danger{background:transparent;color:var(--danger);border:1px solid rgba(255,107,107,.4);}
+.btn-danger:hover{box-shadow:0 0 16px rgba(255,107,107,.3);}
+
+/* ================= LOADER ================= */
+#loader{
+  position:fixed;inset:0;background:var(--bg);z-index:9999;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;
+  transition:opacity .6s ease, visibility .6s ease;
+}
+#loader.hide{opacity:0;visibility:hidden;}
+.loader-mark{
+  font-family:var(--font-mono);font-size:56px;font-weight:600;color:var(--green);
+  letter-spacing:4px;position:relative;
+  text-shadow:0 0 24px rgba(57,255,158,.55);
+}
+.loader-bar{width:180px;height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;}
+.loader-bar span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--green),var(--blue));animation:loadbar 1.4s ease forwards;}
+@keyframes loadbar{to{width:100%;}}
+.loader-txt{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);letter-spacing:2px;}
+
+/* ================= BACKGROUND FX ================= */
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;}
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(57,255,158,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,158,.035) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 40%,transparent 90%);
+}
+
+/* ================= NAVBAR ================= */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 32px;transition:background .3s ease, border-color .3s ease, padding .3s ease;
+  border-bottom:1px solid transparent;
+}
+#navbar.scrolled{background:rgba(6,10,8,.82);backdrop-filter:blur(12px);border-bottom-color:var(--border);padding:12px 32px;}
+.nav-logo{font-family:var(--font-mono);font-weight:600;font-size:18px;color:var(--text);display:flex;align-items:center;gap:8px;}
+.nav-logo span{color:var(--green);}
+.nav-links{display:flex;gap:6px;list-style:none;margin:0;padding:0;}
+.nav-links a{
+  padding:8px 14px;font-size:14px;color:var(--text-dim);border-radius:8px;position:relative;transition:color .2s ease,background .2s ease;
+}
+.nav-links a:hover{color:var(--text);background:rgba(57,255,158,.06);}
+.nav-links a.active{color:var(--green);}
+.nav-links a.active::after{content:'';position:absolute;left:14px;right:14px;bottom:2px;height:1px;background:var(--green);box-shadow:0 0 8px var(--green);}
+.nav-actions{display:flex;align-items:center;gap:14px;}
+.nav-icon-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-dim);cursor:pointer;transition:.2s;}
+.nav-icon-btn:hover{color:var(--green);border-color:var(--border-strong);}
+.hamburger{display:none;width:38px;height:38px;border-radius:8px;border:1px solid var(--border);align-items:center;justify-content:center;cursor:pointer;color:var(--text);}
+#mobile-menu{
+  position:fixed;top:0;right:-100%;width:78%;max-width:320px;height:100vh;background:rgba(8,13,10,.98);
+  backdrop-filter:blur(14px);z-index:1100;transition:right .35s ease;border-left:1px solid var(--border);
+  padding:90px 28px 28px;display:flex;flex-direction:column;gap:6px;
+}
+#mobile-menu.open{right:0;}
+#mobile-menu a{padding:14px 6px;font-size:16px;color:var(--text-dim);border-bottom:1px solid rgba(255,255,255,.05);}
+#mobile-menu a:hover{color:var(--green);}
+.mm-close{position:absolute;top:24px;right:24px;color:var(--text-dim);cursor:pointer;}
+@media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
+
+/* ================= HERO ================= */
+#home{min-height:100vh;display:flex;align-items:center;padding-top:100px;position:relative;}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;}
+@media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:56px;}}
+.eyebrow-line{font-family:var(--font-mono);font-size:13.5px;color:var(--blue);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.eyebrow-line .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 1.8s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hero-name{font-size:clamp(38px,6vw,64px);line-height:1.05;color:var(--text);}
+.hero-name .glow{color:var(--green);text-shadow:0 0 30px rgba(57,255,158,.4);}
+.hero-role{font-family:var(--font-mono);font-size:clamp(15px,2vw,19px);color:var(--text-dim);margin-top:18px;min-height:28px;}
+.hero-role .cursor{color:var(--green);animation:blink 1s steps(1) infinite;}
+.hero-desc{margin-top:22px;color:var(--text-dim);font-size:16px;max-width:520px;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;}
+.hero-socials{display:flex;gap:12px;margin-top:38px;}
+.social-circle{width:42px;height:42px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-dim);transition:.25s;}
+.social-circle:hover{border-color:var(--green);color:var(--green);box-shadow:0 0 16px rgba(57,255,158,.35);transform:translateY(-3px);}
+
+/* profile frame */
+.hero-photo-wrap{position:relative;display:flex;align-items:center;justify-content:center;}
+.hex-frame{
+  position:relative;width:min(360px,80vw);aspect-ratio:1/1;border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;
+  border:1.5px solid var(--border-strong);
+  background:radial-gradient(circle at 30% 20%,rgba(57,255,158,.12),transparent 60%),var(--panel);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  animation:morph 9s ease-in-out infinite;
+  box-shadow:0 0 60px rgba(57,255,158,.12), inset 0 0 40px rgba(79,201,255,.06);
+}
+@keyframes morph{
+  0%,100%{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;}
+  50%{border-radius:58% 42% 40% 60% / 55% 60% 40% 45%;}
+}
+.hex-frame img{width:92%;height:92%;object-fit:cover;border-radius:35% 60% 60% 35% / 40% 42% 55% 57%;}
+.hex-frame .ph-placeholder{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--text-faint);}
+.hex-frame .ph-placeholder svg{width:64px;height:64px;opacity:.5;}
+.scanline{position:absolute;left:6%;right:6%;height:2px;background:linear-gradient(90deg,transparent,var(--green),var(--blue),transparent);opacity:.7;animation:scan 3.2s linear infinite;filter:blur(.4px);}
+@keyframes scan{0%{top:8%;}100%{top:92%;}}
+.photo-controls{position:absolute;bottom:-6px;right:6%;display:flex;gap:8px;}
+.pc-btn{width:38px;height:38px;border-radius:50%;background:var(--panel-2);border:1px solid var(--border-strong);color:var(--green);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;}
+.pc-btn:hover{background:var(--green);color:#04140c;}
+.pc-btn.danger{color:var(--danger);}
+.pc-btn.danger:hover{background:var(--danger);color:#180404;}
+
+/* ================= ABOUT ================= */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
+.about-text p{color:var(--text-dim);font-size:16px;margin-bottom:16px;}
+#about-more{display:none;}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.stat-card{padding:26px 22px;text-align:left;}
+.stat-card .stat-icon{width:38px;height:38px;color:var(--green);margin-bottom:14px;}
+.stat-card h4{font-size:16px;color:var(--text);}
+.stat-card p{font-size:13px;color:var(--text-faint);margin-top:4px;font-family:var(--font-mono);}
+
+/* ================= TIMELINE ================= */
+.timeline{position:relative;padding-left:36px;}
+.timeline::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:1.5px;background:linear-gradient(var(--green),var(--blue-dim));}
+.tl-item{position:relative;padding-bottom:44px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{position:absolute;left:-36px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--green);box-shadow:0 0 12px rgba(57,255,158,.6);}
+.tl-card{padding:26px 28px;}
+.tl-status{display:inline-block;font-family:var(--font-mono);font-size:11.5px;color:var(--blue);border:1px solid rgba(79,201,255,.35);padding:3px 10px;border-radius:6px;margin-bottom:12px;}
+.tl-card h3{font-size:21px;color:var(--text);}
+.tl-card .tl-inst{color:var(--green);font-size:14.5px;margin-top:4px;font-weight:500;}
+.tl-card .tl-year{color:var(--text-faint);font-family:var(--font-mono);font-size:13px;margin-top:8px;}
+.tl-logo{width:44px;height:44px;border-radius:10px;object-fit:cover;border:1px solid var(--border);margin-bottom:12px;}
+
+/* ================= SKILLS ================= */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 40px;}
+@media(max-width:700px){.skills-grid{grid-template-columns:1fr;}}
+.skill-row{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.skill-top{display:flex;justify-content:space-between;font-size:14.5px;margin-bottom:10px;}
+.skill-top .s-name{color:var(--text);font-weight:500;}
+.skill-top .s-pct{font-family:var(--font-mono);color:var(--green);font-size:13px;}
+.skill-bar{height:6px;border-radius:6px;background:rgba(255,255,255,.06);overflow:hidden;}
+.skill-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--green-deep),var(--green));width:0%;transition:width 1.4s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 10px rgba(57,255,158,.4);}
+
+/* ================= PROJECTS ================= */
+.filter-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:38px;}
+.filter-chip{padding:9px 18px;border-radius:999px;border:1px solid var(--border);font-size:13.5px;color:var(--text-dim);cursor:pointer;transition:.2s;font-family:var(--font-mono);}
+.filter-chip:hover{color:var(--text);}
+.filter-chip.active{background:var(--green);color:#04140c;border-color:var(--green);}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+@media(max-width:980px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:680px){.proj-grid{grid-template-columns:1fr;}}
+.proj-card{overflow:hidden;transition:transform .3s ease,box-shadow .3s ease;}
+.proj-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.4);}
+.proj-thumb{height:170px;background:linear-gradient(135deg,var(--panel-2),var(--panel));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.proj-thumb img{width:100%;height:100%;object-fit:cover;}
+.proj-thumb svg{width:44px;height:44px;color:var(--text-faint);}
+.proj-body{padding:22px;}
+.proj-cat{font-family:var(--font-mono);font-size:11px;color:var(--blue);}
+.proj-body h3{font-size:18px;margin-top:8px;color:var(--text);}
+.proj-body p{color:var(--text-dim);font-size:14px;margin-top:8px;min-height:42px;}
+.proj-tech{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.tech-tag{font-size:11px;font-family:var(--font-mono);padding:4px 9px;border-radius:6px;background:rgba(79,201,255,.08);color:var(--blue);border:1px solid rgba(79,201,255,.2);}
+.proj-links{display:flex;gap:10px;margin-top:18px;}
+.proj-links a{font-size:13px;color:var(--text-dim);display:flex;align-items:center;gap:5px;}
+.proj-links a:hover{color:var(--green);}
+.proj-admin-row{position:absolute;top:12px;right:12px;display:flex;gap:6px;z-index:2;}
+
+/* ================= CERTIFICATIONS ================= */
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+@media(max-width:980px){.cert-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:680px){.cert-grid{grid-template-columns:1fr;}}
+.cert-card{padding:24px;position:relative;}
+.cert-icon{width:44px;height:44px;border-radius:10px;background:rgba(57,255,158,.08);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--green);margin-bottom:16px;}
+.cert-card h3{font-size:16.5px;color:var(--text);line-height:1.4;}
+.cert-org{color:var(--text-faint);font-size:13px;margin-top:6px;font-family:var(--font-mono);}
+.cert-card .glow-btn{margin-top:18px;width:100%;justify-content:center;}
+
+/* ================= DOCUMENTS ================= */
+.doc-list{display:flex;flex-direction:column;gap:12px;}
+.doc-row{display:flex;align-items:center;gap:16px;padding:16px 20px;}
+.doc-icon{width:40px;height:40px;border-radius:9px;background:rgba(79,201,255,.08);border:1px solid rgba(79,201,255,.25);color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.doc-info{flex:1;min-width:0;}
+.doc-info h4{font-size:15px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.doc-meta{font-size:12px;color:var(--text-faint);font-family:var(--font-mono);margin-top:3px;}
+.doc-actions{display:flex;gap:8px;flex-shrink:0;}
+
+/* ================= CV ================= */
+#cv-preview-wrap{padding:0;overflow:hidden;}
+#cv-preview{background:#0b120e;padding:46px;}
+.cv-head{display:flex;gap:24px;align-items:center;border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:24px;}
+.cv-photo{width:96px;height:96px;border-radius:14px;object-fit:cover;border:1.5px solid var(--green);}
+.cv-photo-ph{width:96px;height:96px;border-radius:14px;border:1.5px solid var(--border-strong);display:flex;align-items:center;justify-content:center;color:var(--text-faint);font-family:var(--font-mono);}
+.cv-head h2{font-size:26px;color:var(--text);}
+.cv-head .cv-title{color:var(--green);font-size:14.5px;margin-top:4px;}
+.cv-contacts{display:flex;flex-wrap:wrap;gap:16px;margin-top:10px;font-size:13px;color:var(--text-dim);font-family:var(--font-mono);}
+.cv-section{margin-bottom:24px;}
+.cv-section h3{font-size:13px;color:var(--blue);font-family:var(--font-mono);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.06);}
+.cv-section p,.cv-section li{color:var(--text-dim);font-size:14px;}
+.cv-item{margin-bottom:10px;}
+.cv-item strong{color:var(--text);}
+.cv-skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.cv-tag{font-size:12px;font-family:var(--font-mono);padding:5px 10px;border-radius:6px;background:rgba(57,255,158,.08);color:var(--green);border:1px solid var(--border);}
+.cv-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
+.cv-editor{padding:28px;margin-top:28px;}
+.cv-editor h4{font-size:15px;color:var(--text);margin-bottom:16px;}
+.form-field{margin-bottom:16px;}
+.form-field label{font-size:12.5px;color:var(--text-faint);font-family:var(--font-mono);display:block;margin-bottom:6px;}
+.form-field input,.form-field textarea,.form-field select{
+  width:100%;background:var(--panel-2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;color:var(--text);font-family:var(--font-body);font-size:14px;
+}
+.form-field textarea{resize:vertical;min-height:80px;}
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus{outline:none;border-color:var(--green);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:600px){.form-row{grid-template-columns:1fr;}}
+
+@media print{
+  body *{visibility:hidden;}
+  #cv-preview,#cv-preview *{visibility:visible;}
+  #cv-preview{position:absolute;left:0;top:0;width:100%;background:#fff !important;color:#111 !important;}
+  #cv-preview *{color:#111 !important;border-color:#ccc !important;}
+  .cv-tag{background:#eee !important;}
+}
+
+/* ================= CONTACT ================= */
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+.contact-info-card{padding:32px;}
+.ci-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.ci-row:last-child{border-bottom:none;}
+.ci-icon{width:38px;height:38px;border-radius:9px;background:rgba(57,255,158,.08);color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ci-row a,.ci-row span{color:var(--text-dim);font-size:14.5px;}
+.ci-row a:hover{color:var(--green);}
+.contact-form-card{padding:34px;}
+
+/* ================= FOOTER ================= */
+footer{border-top:1px solid var(--border);padding:56px 0 30px;position:relative;}
+.footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;}
+.footer-brand h3{font-size:20px;color:var(--text);}
+.footer-brand p{color:var(--text-faint);font-size:13.5px;margin-top:6px;}
+.footer-tag{color:var(--text-dim);font-size:13.5px;margin-top:14px;font-family:var(--font-mono);}
+.footer-socials{display:flex;gap:12px;align-items:flex-start;}
+.footer-bottom{text-align:center;color:var(--text-faint);font-size:12.5px;margin-top:46px;font-family:var(--font-mono);}
+
+/* ================= REVEAL ================= */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.show{opacity:1;transform:none;}
+
+/* ================= MODAL ================= */
+.modal-overlay{position:fixed;inset:0;background:rgba(3,6,4,.75);backdrop-filter:blur(4px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal-box{width:100%;max-width:520px;max-height:88vh;overflow-y:auto;padding:30px;position:relative;}
+.modal-box.wide{max-width:640px;}
+.modal-close{position:absolute;top:18px;right:18px;color:var(--text-faint);cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:8px;}
+.modal-close:hover{color:var(--text);background:rgba(255,255,255,.06);}
+.modal-box h3{font-size:19px;color:var(--text);margin-bottom:22px;}
+.modal-actions{display:flex;gap:12px;margin-top:8px;justify-content:flex-end;}
+.file-drop{border:1.5px dashed var(--border-strong);border-radius:10px;padding:22px;text-align:center;cursor:pointer;color:var(--text-faint);font-size:13px;transition:.2s;}
+.file-drop:hover{border-color:var(--green);color:var(--green);}
+
+/* toast */
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--panel-2);border:1px solid var(--border-strong);color:var(--text);padding:13px 22px;border-radius:10px;font-size:14px;z-index:3000;opacity:0;pointer-events:none;transition:.3s;display:flex;align-items:center;gap:10px;}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+#toast .dot{width:8px;height:8px;border-radius:50%;background:var(--green);}
+
+/* admin bar */
+#admin-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(8,13,10,.96);border-top:1px solid var(--border-strong);z-index:1500;padding:12px 24px;display:none;align-items:center;justify-content:space-between;backdrop-filter:blur(10px);}
+#admin-bar.on{display:flex;}
+#admin-bar .ab-left{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:13px;color:var(--green);}
+#admin-bar .ab-left .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1.6s infinite;}
+.admin-edit-btn{position:absolute;background:var(--panel-2);border:1px solid var(--border-strong);color:var(--green);width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;}
+.admin-edit-btn:hover{background:var(--green);color:#04140c;}
+.rel{position:relative;}
+
+.icon{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8;}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-mark">HA</div>
+  <div class="loader-bar"><span></span></div>
+  <div class="loader-txt">INITIALIZING PORTFOLIO…</div>
+</div>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-grid"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">&lt;<span>H</span>A/&gt;</a>
+  <ul class="nav-links">
+    <li><a href="#home" class="nav-link">Home</a></li>
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#education" class="nav-link">Education</a></li>
+    <li><a href="#skills" class="nav-link">Skills</a></li>
+    <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#certifications" class="nav-link">Certifications</a></li>
+    <li><a href="#documents" class="nav-link">Documents</a></li>
+    <li><a href="#cv" class="nav-link">CV</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="nav-icon-btn" title="Admin" onclick="openAdminLogin()">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+    </div>
+    <div class="hamburger" onclick="toggleMobileMenu(true)">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </div>
+  </div>
+</nav>
+
+<div id="mobile-menu">
+  <div class="mm-close" onclick="toggleMobileMenu(false)"><svg class="icon" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+  <a href="#home" class="nav-link">Home</a>
+  <a href="#about" class="nav-link">About</a>
+  <a href="#education" class="nav-link">Education</a>
+  <a href="#skills" class="nav-link">Skills</a>
+  <a href="#projects" class="nav-link">Projects</a>
+  <a href="#certifications" class="nav-link">Certifications</a>
+  <a href="#documents" class="nav-link">Documents</a>
+  <a href="#cv" class="nav-link">CV</a>
+  <a href="#contact" class="nav-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow-line"><span class="dot"></span> AVAILABLE FOR INTERNSHIPS &amp; FREELANCE WORK</div>
+      <h1 class="hero-name">Haroon Ahmed<br><span class="glow" id="hero-role-static">Cybersecurity in progress.</span></h1>
+      <div class="hero-role">&gt; <span id="typed-text"></span><span class="cursor">▌</span></div>
+      <p class="hero-desc" id="hero-desc">Passionate about Information Technology, programming, networking, Linux, databases and cybersecurity. Continuously learning new technologies and building practical projects to develop professional IT skills.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="glow-btn btn-primary">View My Projects</a>
+        <a href="#cv" class="glow-btn btn-ghost" onclick="downloadCV(event)">Download CV</a>
+        <a href="#certifications" class="glow-btn btn-ghost">View Certificates</a>
+        <a href="#contact" class="glow-btn btn-blue">Contact Me</a>
+      </div>
+      <div class="hero-socials" id="hero-socials"></div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="hex-frame" id="hero-hex">
+        <div class="scanline"></div>
+        <div class="ph-placeholder" id="hero-ph-placeholder">
+          <svg viewBox="0 0 24 24" class="icon" style="width:64px;height:64px;"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg>
+          <span style="font-family:var(--font-mono);font-size:12px;">NO IMAGE UPLOADED</span>
+        </div>
+        <img id="hero-photo-img" style="display:none;" alt="Haroon Ahmed">
+      </div>
+      <div class="photo-controls">
+        <div class="pc-btn" title="Upload / Change photo" onclick="document.getElementById('photo-upload-input').click()">
+          <svg class="icon" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="pc-btn danger" title="Remove photo" onclick="removeProfilePhoto()">
+          <svg class="icon" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M4 7h16M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2m-7 0v12a2 2 0 002 2h4a2 2 0 002-2V7"/></svg>
+        </div>
+      </div>
+      <input type="file" id="photo-upload-input" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">Profile</div>
+      <h2>About Me</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>My name is Haroon Ahmed. I am a BS Information Technology student with a strong interest in programming, networking, databases, Linux and cybersecurity. I enjoy learning new technologies, working on practical projects and continuously improving my technical skills.</p>
+        <div id="about-more">
+          <p>I'm currently focused on strengthening my foundations across networking, systems administration and applied security, while building small, functional projects that mirror real-world IT problems. My goal is to grow into a well-rounded cybersecurity professional through consistent, hands-on learning.</p>
+        </div>
+        <button class="glow-btn btn-ghost btn-sm" id="read-more-btn" onclick="toggleReadMore()">Read More</button>
+      </div>
+      <div class="stat-grid reveal">
+        <div class="stat-card glass">
+          <svg class="icon stat-icon" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5zM6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
+          <h4>BSIT Student</h4><p>University of Kamalia</p>
+        </div>
+        <div class="stat-card glass">
+          <svg class="icon stat-icon" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+          <h4>IT &amp; Cybersecurity</h4><p>Continuous learner</p>
+        </div>
+        <div class="stat-card glass">
+          <svg class="icon stat-icon" viewBox="0 0 24 24"><path d="M8 9l-5 3 5 3M16 9l5 3-5 3M13 5l-2 14"/></svg>
+          <h4>Programming</h4><p>C++ · JS · SQL</p>
+        </div>
+        <div class="stat-card glass">
+          <svg class="icon stat-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M4 12h4m8 0h4M12 4v4m0 8v4"/></svg>
+          <h4>Networking</h4><p>Fundamentals &amp; Linux</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">Academic Path</div>
+      <h2>Education</h2>
+    </div>
+    <div class="timeline reveal" id="education-list"></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">Capabilities</div>
+      <h2>Technical Skills</h2>
+      <p>Levels are self-assessed and kept realistic — updated as skills develop.</p>
+    </div>
+    <div class="skills-grid reveal" id="skills-list"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">Selected Work</div>
+      <h2>Projects</h2>
+    </div>
+    <div class="filter-row reveal" id="project-filters"></div>
+    <div class="proj-grid reveal" id="projects-list"></div>
+    <div style="margin-top:30px;" class="admin-only" id="add-project-btn-wrap" hidden>
+      <button class="glow-btn btn-ghost btn-sm" onclick="openProjectModal()">+ Add Project</button>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">Verified Credentials</div>
+      <h2>Certifications</h2>
+    </div>
+    <div class="cert-grid reveal" id="cert-list"></div>
+    <div style="margin-top:30px;" class="admin-only" hidden>
+      <button class="glow-btn btn-ghost btn-sm" onclick="openCertModal()">+ Add Certificate</button>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTS -->
+<section id="documents" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">Files</div>
+      <h2>Documents</h2>
+      <p>CV, certificates and reports — securely listed for preview and download.</p>
+    </div>
+    <div class="doc-list reveal" id="doc-list"></div>
+    <div style="margin-top:22px;">
+      <button class="glow-btn btn-ghost btn-sm" onclick="openDocModal()">+ Upload Document</button>
+    </div>
+  </div>
+</section>
+
+<!-- CV BUILDER -->
+<section id="cv" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">Auto-Generated</div>
+      <h2>Professional CV</h2>
+      <p>Built live from your portfolio data — always in sync.</p>
+    </div>
+
+    <div class="glass reveal" id="cv-preview-wrap">
+      <div id="cv-preview"></div>
+    </div>
+
+    <div class="cv-actions reveal">
+      <button class="glow-btn btn-primary" onclick="downloadCV(event)">Download PDF</button>
+      <button class="glow-btn btn-ghost" onclick="window.print()">Print CV</button>
+      <button class="glow-btn btn-blue" onclick="openCvEditor()">Update CV Details</button>
+      <button class="glow-btn btn-ghost btn-sm" onclick="document.getElementById('cv-upload-input').click()">Upload Existing CV</button>
+      <input type="file" id="cv-upload-input" accept=".pdf,.doc,.docx" style="display:none;" onchange="handleCvUpload(event)">
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag">Get In Touch</div>
+      <h2>Contact</h2>
+      <p>Open to internships, entry-level roles and freelance opportunities.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info-card glass reveal" id="contact-info"></div>
+      <div class="contact-form-card glass reveal">
+        <form id="contact-form" onsubmit="handleContactSubmit(event)">
+          <div class="form-row">
+            <div class="form-field"><label>Name</label><input type="text" required placeholder="Your name" id="cf-name"></div>
+            <div class="form-field"><label>Email</label><input type="email" required placeholder="you@example.com" id="cf-email"></div>
+          </div>
+          <div class="form-field"><label>Subject</label><input type="text" required placeholder="What's this about?" id="cf-subject"></div>
+          <div class="form-field"><label>Message</label><textarea required placeholder="Write your message…" id="cf-message"></textarea></div>
+          <button type="submit" class="glow-btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Haroon Ahmed</h3>
+        <p>BS Information Technology Student</p>
+        <p class="footer-tag">Building skills. Creating projects. Exploring technology.</p>
+      </div>
+      <div class="footer-socials" id="footer-socials"></div>
+    </div>
+    <div class="footer-bottom">© <span id="footer-year">2026</span> Haroon Ahmed. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<!-- ADMIN BAR -->
+<div id="admin-bar">
+  <div class="ab-left"><span class="dot"></span> ADMIN MODE ACTIVE — edit controls are visible across the site</div>
+  <button class="glow-btn btn-danger btn-sm" onclick="logoutAdmin()">Exit Admin</button>
+</div>
+
+<div id="toast"></div>
+
+<!-- ================= MODALS ================= -->
+
+<!-- Admin login -->
+<div class="modal-overlay" id="modal-admin-login">
+  <div class="modal-box glass">
+    <div class="modal-close" onclick="closeModal('modal-admin-login')">✕</div>
+    <h3>Admin Login</h3>
+    <div class="form-field"><label>Password</label><input type="password" id="admin-pass-input" placeholder="Enter admin password"></div>
+    <p style="font-size:12.5px;color:var(--text-faint);margin-bottom:14px;">Default password: <code style="color:var(--green);">admin123</code> — change it from Admin Settings after logging in.</p>
+    <div class="modal-actions">
+      <button class="glow-btn btn-ghost btn-sm" onclick="closeModal('modal-admin-login')">Cancel</button>
+      <button class="glow-btn btn-primary btn-sm" onclick="tryAdminLogin()">Login</button>
+    </div>
+  </div>
+</div>
+
+<!-- Project modal -->
+<div class="modal-overlay" id="modal-project">
+  <div class="modal-box wide glass">
+    <div class="modal-close" onclick="closeModal('modal-project')">✕</div>
+    <h3 id="project-modal-title">Add Project</h3>
+    <input type="hidden" id="proj-id">
+    <div class="form-row">
+      <div class="form-field"><label>Title</label><input type="text" id="proj-title" placeholder="Project title"></div>
+      <div class="form-field"><label>Category</label>
+        <select id="proj-category">
+          <option>C++</option><option>Web</option><option>Database</option><option>Networking</option><option>Cybersecurity</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-field"><label>Description</label><textarea id="proj-desc" placeholder="Short description of the project"></textarea></div>
+    <div class="form-field"><label>Technologies (comma separated)</label><input type="text" id="proj-tech" placeholder="e.g. C++, MySQL"></div>
+    <div class="form-row">
+      <div class="form-field"><label>GitHub Link</label><input type="text" id="proj-github" placeholder="https://github.com/..."></div>
+      <div class="form-field"><label>Live Demo Link</label><input type="text" id="proj-demo" placeholder="https://..."></div>
+    </div>
+    <div class="form-field"><label>Project Image</label>
+      <div class="file-drop" onclick="document.getElementById('proj-image-input').click()">Click to upload image</div>
+      <input type="file" id="proj-image-input" accept="image/*" style="display:none;" onchange="previewToField(event,'proj-image-data')">
+      <input type="hidden" id="proj-image-data">
+    </div>
+    <div class="modal-actions">
+      <button class="glow-btn btn-ghost btn-sm" onclick="closeModal('modal-project')">Cancel</button>
+      <button class="glow-btn btn-primary btn-sm" onclick="saveProject()">Save Project</button>
+    </div>
+  </div>
+</div>
+
+<!-- Certificate modal -->
+<div class="modal-overlay" id="modal-cert">
+  <div class="modal-box glass">
+    <div class="modal-close" onclick="closeModal('modal-cert')">✕</div>
+    <h3 id="cert-modal-title">Add Certificate</h3>
+    <input type="hidden" id="cert-id">
+    <div class="form-field"><label>Certificate Title</label><input type="text" id="cert-title" placeholder="e.g. Introduction to Cybersecurity"></div>
+    <div class="form-field"><label>Issuing Organization</label><input type="text" id="cert-org" placeholder="e.g. Coursera"></div>
+    <div class="form-field"><label>Verification URL</label><input type="text" id="cert-url" placeholder="https://coursera.org/verify/..."></div>
+    <div class="form-field"><label>Certificate File (image or PDF)</label>
+      <div class="file-drop" onclick="document.getElementById('cert-file-input').click()">Click to upload file</div>
+      <input type="file" id="cert-file-input" accept="image/*,.pdf" style="display:none;" onchange="previewToField(event,'cert-file-data')">
+      <input type="hidden" id="cert-file-data">
+    </div>
+    <div class="modal-actions">
+      <button class="glow-btn btn-ghost btn-sm" onclick="closeModal('modal-cert')">Cancel</button>
+      <button class="glow-btn btn-primary btn-sm" onclick="saveCert()">Save Certificate</button>
+    </div>
+  </div>
+</div>
+
+<!-- Document modal -->
+<div class="modal-overlay" id="modal-doc">
+  <div class="modal-box glass">
+    <div class="modal-close" onclick="closeModal('modal-doc')">✕</div>
+    <h3>Upload Document</h3>
+    <div class="form-field"><label>Document Type</label>
+      <select id="doc-type"><option>CV</option><option>Resume</option><option>Certificate</option><option>Educational Document</option><option>Project Report</option><option>Other</option></select>
+    </div>
+    <div class="form-field"><label>File</label>
+      <div class="file-drop" onclick="document.getElementById('doc-file-input').click()">Click to upload file</div>
+      <input type="file" id="doc-file-input" style="display:none;" onchange="handleDocFile(event)">
+      <input type="hidden" id="doc-file-data">
+      <input type="hidden" id="doc-file-name">
+    </div>
+    <div class="modal-actions">
+      <button class="glow-btn btn-ghost btn-sm" onclick="closeModal('modal-doc')">Cancel</button>
+      <button class="glow-btn btn-primary btn-sm" onclick="saveDoc()">Upload</button>
+    </div>
+  </div>
+</div>
+
+<!-- Skill modal -->
+<div class="modal-overlay" id="modal-skill">
+  <div class="modal-box glass">
+    <div class="modal-close" onclick="closeModal('modal-skill')">✕</div>
+    <h3 id="skill-modal-title">Add Skill</h3>
+    <input type="hidden" id="skill-id">
+    <div class="form-field"><label>Skill Name</label><input type="text" id="skill-name" placeholder="e.g. Python"></div>
+    <div class="form-field"><label>Proficiency (%)</label><input type="number" id="skill-pct" min="0" max="100" placeholder="60"></div>
+    <div class="modal-actions">
+      <button class="glow-btn btn-ghost btn-sm" onclick="closeModal('modal-skill')">Cancel</button>
+      <button class="glow-btn btn-primary btn-sm" onclick="saveSkill()">Save Skill</button>
+    </div>
+  </div>
+</div>
+
+<!-- Education modal -->
+<div class="modal-overlay" id="modal-edu">
+  <div class="modal-box glass">
+    <div class="modal-close" onclick="closeModal('modal-edu')">✕</div>
+    <h3>Edit Education Entry</h3>
+    <input type="hidden" id="edu-id">
+    <div class="form-field"><label>Level / Degree</label><input type="text" id="edu-degree"></div>
+    <div class="form-field"><label>Institution</label><input type="text" id="edu-institution"></div>
+    <div class="form-field"><label>Duration / Year</label><input type="text" id="edu-duration" placeholder="e.g. 2023 – Present"></div>
+    <div class="form-field"><label>Status</label><input type="text" id="edu-status" placeholder="e.g. Currently Studying"></div>
+    <div class="form-field"><label>Logo / Certificate Upload</label>
+      <div class="file-drop" onclick="document.getElementById('edu-logo-input').click()">Click to upload</div>
+      <input type="file" id="edu-logo-input" accept="image/*" style="display:none;" onchange="previewToField(event,'edu-logo-data')">
+      <input type="hidden" id="edu-logo-data">
+    </div>
+    <div class="modal-actions">
+      <button class="glow-btn btn-ghost btn-sm" onclick="closeModal('modal-edu')">Cancel</button>
+      <button class="glow-btn btn-primary btn-sm" onclick="saveEdu()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Admin dashboard (settings hub) -->
+<div class="modal-overlay" id="modal-admin-dash">
+  <div class="modal-box wide glass">
+    <div class="modal-close" onclick="closeModal('modal-admin-dash')">✕</div>
+    <h3>Admin Dashboard</h3>
+    <p style="color:var(--text-dim);font-size:14px;margin-bottom:20px;">Edit core profile &amp; contact info, social links, and site security settings. Section content (projects, certs, skills, education, docs) is edited inline using the ✎ icons across the site while Admin Mode is on.</p>
+
+    <div class="form-field"><label>Full Name</label><input type="text" id="set-name"></div>
+    <div class="form-field"><label>Professional Title</label><input type="text" id="set-title"></div>
+    <div class="form-field"><label>Short Introduction</label><textarea id="set-intro"></textarea></div>
+    <div class="form-row">
+      <div class="form-field"><label>Phone</label><input type="text" id="set-phone"></div>
+      <div class="form-field"><label>Email</label><input type="text" id="set-email"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-field"><label>LinkedIn URL</label><input type="text" id="set-linkedin"></div>
+      <div class="form-field"><label>GitHub URL</label><input type="text" id="set-github"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-field"><label>Facebook URL</label><input type="text" id="set-facebook"></div>
+      <div class="form-field"><label>Instagram URL</label><input type="text" id="set-instagram"></div>
+    </div>
+    <div class="form-field"><label>YouTube URL</label><input type="text" id="set-youtube"></div>
+    <div class="form-field"><label>New Admin Password (leave blank to keep current)</label><input type="password" id="set-password"></div>
+    <div class="modal-actions">
+      <button class="glow-btn btn-ghost btn-sm" onclick="closeModal('modal-admin-dash')">Cancel</button>
+      <button class="glow-btn btn-primary btn-sm" onclick="saveAdminSettings()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- CV editor -->
+<div class="modal-overlay" id="modal-cv-editor">
+  <div class="modal-box wide glass">
+    <div class="modal-close" onclick="closeModal('modal-cv-editor')">✕</div>
+    <h3>Update CV Details</h3>
+    <div class="form-field"><label>Professional Summary</label><textarea id="cv-summary" placeholder="2–3 sentence professional summary"></textarea></div>
+    <div class="form-field"><label>Career Objective</label><textarea id="cv-objective" placeholder="Your career objective"></textarea></div>
+    <div class="form-field"><label>Achievements (one per line)</label><textarea id="cv-achievements" placeholder="e.g. Completed X certification"></textarea></div>
+    <div class="form-row">
+      <div class="form-field"><label>Languages (comma separated)</label><input type="text" id="cv-languages" placeholder="e.g. English, Urdu"></div>
+      <div class="form-field"><label>Interests (comma separated)</label><input type="text" id="cv-interests" placeholder="e.g. Ethical hacking, Chess"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="glow-btn btn-ghost btn-sm" onclick="closeModal('modal-cv-editor')">Cancel</button>
+      <button class="glow-btn btn-primary btn-sm" onclick="saveCvDetails()">Save CV Details</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATA LAYER
+   ============================================================ */
+const STORAGE_KEY = 'ha_portfolio_data_v1';
+
+const defaultData = {
+  profile:{
+    name:'Haroon Ahmed',
+    title:'BS Information Technology Student | IT Enthusiast | Aspiring Cybersecurity Professional',
+    intro:"Passionate about Information Technology, programming, networking, Linux, databases and cybersecurity. Continuously learning new technologies and building practical projects to develop professional IT skills.",
+    photo:'',
+    phone:'03304253717',
+    email:'harooharoonahmad78699@gmail.com',
+    linkedin:'http://www.linkedin.com/in/haroon-ahmed-696a4439a',
+    github:'',
+    facebook:'',
+    instagram:'',
+    youtube:'',
+    adminPasswordHash: btoa('admin123')
+  },
+  education:[
+    {id:'e1', degree:'BS Information Technology (BSIT)', institution:'University of Kamalia', duration:'Add year (edit in admin)', status:'Currently Studying', logo:''},
+    {id:'e2', degree:'Intermediate', institution:'Govt. PST Graduate College Kamalia', duration:'Add year (edit in admin)', status:'Completed', logo:''}
+  ],
+  skills:[
+    {id:'s1',name:'C++',pct:60},
+    {id:'s2',name:'HTML',pct:75},
+    {id:'s3',name:'CSS',pct:70},
+    {id:'s4',name:'JavaScript',pct:55},
+    {id:'s5',name:'SQL',pct:60},
+    {id:'s6',name:'DBMS',pct:60},
+    {id:'s7',name:'Networking',pct:55},
+    {id:'s8',name:'Linux',pct:50},
+    {id:'s9',name:'Cybersecurity',pct:45},
+    {id:'s10',name:'Git & GitHub',pct:55},
+    {id:'s11',name:'Microsoft Office',pct:80}
+  ],
+  projects:[
+    {id:'p1',title:'Project Title (edit in admin)',category:'C++',desc:'Add a short description of this project here.',tech:'C++',github:'',demo:'',image:''},
+    {id:'p2',title:'Project Title (edit in admin)',category:'Web',desc:'Add a short description of this project here.',tech:'HTML, CSS, JavaScript',github:'',demo:'',image:''},
+    {id:'p3',title:'Project Title (edit in admin)',category:'Cybersecurity',desc:'Add a short description of this project here.',tech:'Linux, Networking',github:'',demo:'',image:''}
+  ],
+  certifications:[
+    {id:'c1',title:'Certificate Title (edit in admin)',org:'Coursera',url:'https://coursera.org/verify/OAPSTTI5C7DR',file:''},
+    {id:'c2',title:'Certificate Title (edit in admin)',org:'Coursera',url:'https://coursera.org/verify/QRJC4P5272W7',file:''},
+    {id:'c3',title:'Certificate Title (edit in admin)',org:'Coursera',url:'https://coursera.org/verify/JS0CKH6X8EHI',file:''},
+    {id:'c4',title:'Certificate Title (edit in admin)',org:'Coursera',url:'https://coursera.org/verify/Y5LZGTYO30KF',file:''},
+    {id:'c5',title:'Certificate Title (edit in admin)',org:'Coursera',url:'https://coursera.org/verify/FJSX',file:''},
+    {id:'c6',title:'Certificate Title (edit in admin)',org:'Coursera',url:'https://coursera.org/verify/NQ9Z1TR1Q5WG',file:''}
+  ],
+  documents:[],
+  cv:{
+    summary:'Add a 2–3 sentence professional summary here.',
+    objective:'Add your career objective here.',
+    achievements:'',
+    languages:'',
+    interests:''
+  }
+};
+
+let data = loadData();
+
+function loadData(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return JSON.parse(JSON.stringify(defaultData));
+    const parsed = JSON.parse(raw);
+    // shallow-merge to survive schema additions
+    return {...JSON.parse(JSON.stringify(defaultData)), ...parsed,
+      profile:{...defaultData.profile, ...(parsed.profile||{})},
+      cv:{...defaultData.cv, ...(parsed.cv||{})}
+    };
+  }catch(e){
+    console.error('Failed to load stored data, using defaults.', e);
+    return JSON.parse(JSON.stringify(defaultData));
+  }
+}
+function saveData(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }catch(e){
+    toast('Storage limit reached — try a smaller file.',true);
+  }
+}
+function uid(prefix){ return prefix + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+let toastTimer;
+function toast(msg, isError){
+  const el = document.getElementById('toast');
+  el.innerHTML = '<span class="dot" style="background:'+(isError?'var(--danger)':'var(--green)')+'"></span>'+msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('show'), 2800);
+}
+
+/* ============================================================
+   LOADER
+   ============================================================ */
+window.addEventListener('load', ()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('hide'), 900);
+});
+
+/* ============================================================
+   BACKGROUND PARTICLES
+   ============================================================ */
+(function(){
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let w,h,particles=[];
+  function resize(){ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const COUNT = Math.min(70, Math.floor(window.innerWidth/22));
+  for(let i=0;i<COUNT;i++){
+    particles.push({
+      x:Math.random()*w, y:Math.random()*h,
+      vx:(Math.random()-.5)*.25, vy:(Math.random()-.5)*.25,
+      r:Math.random()*1.6+.4,
+      c: Math.random()>0.75 ? '79,201,255' : '57,255,158',
+      a: Math.random()*.5+.2
+    });
+  }
+  function tick(){
+    ctx.clearRect(0,0,w,h);
+    particles.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=w; if(p.x>w)p.x=0;
+      if(p.y<0)p.y=h; if(p.y>h)p.y=0;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${p.c},${p.a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(tick);
+  }
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){ tick(); }
+})();
+
+/* ============================================================
+   NAVBAR / SCROLL / MOBILE MENU
+   ============================================================ */
+window.addEventListener('scroll', ()=>{
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY>30);
+});
+function toggleMobileMenu(open){
+  document.getElementById('mobile-menu').classList.toggle('open', open);
+}
+document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click', ()=>toggleMobileMenu(false)));
+
+const sections = ['home','about','education','skills','projects','certifications','documents','cv','contact'];
+const navLinkEls = document.querySelectorAll('.nav-links a.nav-link');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      navLinkEls.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+id));
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px'});
+sections.forEach(id=>{ const el=document.getElementById(id); if(el) io.observe(el); });
+
+/* reveal on scroll */
+const revealIO = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); revealIO.unobserve(e.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revealIO.observe(el));
+
+/* ============================================================
+   TYPING ANIMATION
+   ============================================================ */
+const typedWords = ['IT Student','Programmer','Networking Enthusiast','Cybersecurity Learner','Tech Enthusiast'];
+let twI=0, twC=0, twDel=false;
+function typeLoop(){
+  const el = document.getElementById('typed-text');
+  const word = typedWords[twI];
+  if(!twDel){
+    twC++;
+    el.textContent = word.slice(0,twC);
+    if(twC===word.length){ twDel=true; setTimeout(typeLoop, 1400); return; }
+  } else {
+    twC--;
+    el.textContent = word.slice(0,twC);
+    if(twC===0){ twDel=false; twI=(twI+1)%typedWords.length; }
+  }
+  setTimeout(typeLoop, twDel?45:90);
+}
+typeLoop();
+
+/* ============================================================
+   RENDER: PROFILE / HERO / CONTACT / FOOTER
+   ============================================================ */
+function iconSvg(name){
+  const icons = {
+    linkedin:'<svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M6.94 5a2 2 0 11-4-.002 2 2 0 014 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg>',
+    github:'<svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.55 2.87 8.4 6.84 9.76.5.1.68-.22.68-.5 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.22-3.37-1.22-.46-1.2-1.11-1.52-1.11-1.52-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.9 1.55 2.36 1.11 2.94.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0112 6.84c.85.004 1.71.117 2.51.343 1.9-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.81 0 .28.18.61.69.5A10.02 10.02 0 0022 12.26C22 6.58 17.52 2 12 2z"/></svg>',
+    mail:'<svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4z"/><path d="M4 6l8 7 8-7"/></svg>',
+    facebook:'<svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.5 21v-7.5H16l.5-3H13.5V8.3c0-.87.24-1.46 1.5-1.46H16.6V4.14C16.34 4.1 15.44 4 14.4 4c-2.18 0-3.68 1.33-3.68 3.77v2.73H8v3h2.72V21h2.78z"/></svg>',
+    instagram:'<svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>',
+    youtube:'<svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22 12s0-3.2-.4-4.7c-.24-.86-.9-1.53-1.76-1.77C18.3 5 12 5 12 5s-6.3 0-7.84.53c-.86.24-1.52.9-1.76 1.77C2 8.8 2 12 2 12s0 3.2.4 4.7c.24.86.9 1.53 1.76 1.77C5.7 19 12 19 12 19s6.3 0 7.84-.53c.86-.24 1.52-.9 1.76-1.77.4-1.5.4-4.7.4-4.7z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 9.5l5 2.5-5 2.5v-5z"/></svg>',
+    phone:'<svg class="icon" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.4 2.1L8.1 9.7a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.4c.9.3 1.8.5 2.7.6a2 2 0 011.7 2z"/></svg>'
+  };
+  return icons[name]||'';
+}
+function renderSocials(container, size){
+  const p = data.profile;
+  const list = [];
+  if(p.linkedin) list.push(['linkedin',p.linkedin]);
+  if(p.github) list.push(['github',p.github]);
+  list.push(['mail','mailto:'+p.email]);
+  if(p.facebook) list.push(['facebook',p.facebook]);
+  if(p.instagram) list.push(['instagram',p.instagram]);
+  if(p.youtube) list.push(['youtube',p.youtube]);
+  container.innerHTML = list.map(([key,url])=>`<a class="social-circle" href="${url}" target="_blank" rel="noopener">${iconSvg(key)}</a>`).join('');
+}
+
+function renderProfile(){
+  const p = data.profile;
+  document.title = p.name+' — '+ (p.title.split('|')[0].trim() || 'Portfolio');
+  document.querySelector('.hero-name').innerHTML = p.name+'<br><span class="glow">'+ (p.title.split('|').slice(1).join('|').trim() || p.title) +'</span>';
+  document.getElementById('hero-desc').textContent = p.intro;
+  renderSocials(document.getElementById('hero-socials'));
+  renderSocials(document.getElementById('footer-socials'));
+
+  const img = document.getElementById('hero-photo-img');
+  const ph = document.getElementById('hero-ph-placeholder');
+  if(p.photo){ img.src = p.photo; img.style.display='block'; ph.style.display='none'; }
+  else { img.style.display='none'; ph.style.display='flex'; }
+
+  document.getElementById('contact-info').innerHTML = `
+    <div class="ci-row"><div class="ci-icon">${iconSvg('phone')}</div><a href="tel:${p.phone}">${p.phone}</a></div>
+    <div class="ci-row"><div class="ci-icon">${iconSvg('mail')}</div><a href="mailto:${p.email}">${p.email}</a></div>
+    <div class="ci-row"><div class="ci-icon">${iconSvg('linkedin')}</div><a href="${p.linkedin}" target="_blank" rel="noopener">${p.linkedin.replace('http://','').replace('https://','')}</a></div>
+    ${p.github?`<div class="ci-row"><div class="ci-icon">${iconSvg('github')}</div><a href="${p.github}" target="_blank" rel="noopener">${p.github.replace('http://','').replace('https://','')}</a></div>`:''}
+  `;
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+}
+
+function handlePhotoUpload(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  if(!file.type.startsWith('image/')){ toast('Please upload an image file.', true); return; }
+  const reader = new FileReader();
+  reader.onload = ()=>{ data.profile.photo = reader.result; saveData(); renderProfile(); toast('Profile photo updated.'); };
+  reader.readAsDataURL(file);
+}
+function removeProfilePhoto(){
+  data.profile.photo=''; saveData(); renderProfile(); toast('Profile photo removed.');
+}
+
+function toggleReadMore(){
+  const more = document.getElementById('about-more');
+  const btn = document.getElementById('read-more-btn');
+  const isOpen = more.style.display==='block';
+  more.style.display = isOpen?'none':'block';
+  btn.textContent = isOpen?'Read More':'Read Less';
+}
+
+function handleContactSubmit(e){
+  e.preventDefault();
+  const name=document.getElementById('cf-name').value;
+  const email=document.getElementById('cf-email').value;
+  const subject=document.getElementById('cf-subject').value;
+  const message=document.getElementById('cf-message').value;
+  const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+  window.location.href = `mailto:${data.profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  toast('Opening your email app to send the message…');
+  e.target.reset();
+}
+
+/* ============================================================
+   RENDER: EDUCATION
+   ============================================================ */
+function renderEducation(){
+  const wrap = document.getElementById('education-list');
+  wrap.innerHTML = data.education.map(edu=>`
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card glass rel">
+        ${isAdmin?`<div class="admin-edit-btn" style="top:14px;right:14px;" onclick="openEduModal('${edu.id}')" title="Edit"><svg class="icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>`:''}
+        ${edu.logo?`<img src="${edu.logo}" class="tl-logo" alt="">`:''}
+        <div class="tl-status">${edu.status}</div>
+        <h3>${edu.degree}</h3>
+        <div class="tl-inst">${edu.institution}</div>
+        <div class="tl-year">${edu.duration}</div>
+      </div>
+    </div>
+  `).join('');
+}
+function openEduModal(id){
+  const edu = data.education.find(x=>x.id===id);
+  document.getElementById('edu-id').value = id;
+  document.getElementById('edu-degree').value = edu.degree;
+  document.getElementById('edu-institution').value = edu.institution;
+  document.getElementById('edu-duration').value = edu.duration;
+  document.getElementById('edu-status').value = edu.status;
+  document.getElementById('edu-logo-data').value = edu.logo||'';
+  openModal('modal-edu');
+}
+function saveEdu(){
+  const id = document.getElementById('edu-id').value;
+  const edu = data.education.find(x=>x.id===id);
+  edu.degree = document.getElementById('edu-degree').value;
+  edu.institution = document.getElementById('edu-institution').value;
+  edu.duration = document.getElementById('edu-duration').value;
+  edu.status = document.getElementById('edu-status').value;
+  edu.logo = document.getElementById('edu-logo-data').value;
+  saveData(); renderEducation(); renderCV(); closeModal('modal-edu'); toast('Education updated.');
+}
+
+/* ============================================================
+   RENDER: SKILLS
+   ============================================================ */
+function renderSkills(){
+  const wrap = document.getElementById('skills-list');
+  wrap.innerHTML = data.skills.map(s=>`
+    <div class="skill-row rel">
+      ${isAdmin?`<div style="position:absolute;right:0;top:12px;display:flex;gap:6px;">
+        <span class="admin-edit-btn" style="position:static;width:26px;height:26px;" onclick="openSkillModal('${s.id}')" title="Edit"><svg class="icon" style="width:12px;height:12px;" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+        <span class="admin-edit-btn" style="position:static;width:26px;height:26px;color:var(--danger);" onclick="deleteSkill('${s.id}')" title="Delete">✕</span>
+      </div>`:''}
+      <div class="skill-top"><span class="s-name">${s.name}</span><span class="s-pct">${s.pct}%</span></div>
+      <div class="skill-bar"><div class="skill-fill" data-pct="${s.pct}"></div></div>
+    </div>
+  `).join('') + (isAdmin?`<button class="glow-btn btn-ghost btn-sm" style="margin-top:14px;" onclick="openSkillModal(null)">+ Add Skill</button>`:'');
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.skill-fill').forEach(f=>{ f.style.width = f.dataset.pct+'%'; });
+  });
+}
+function openSkillModal(id){
+  document.getElementById('skill-id').value = id||'';
+  document.getElementById('skill-modal-title').textContent = id?'Edit Skill':'Add Skill';
+  if(id){
+    const s = data.skills.find(x=>x.id===id);
+    document.getElementById('skill-name').value = s.name;
+    document.getElementById('skill-pct').value = s.pct;
+  } else {
+    document.getElementById('skill-name').value='';
+    document.getElementById('skill-pct').value='';
+  }
+  openModal('modal-skill');
+}
+function saveSkill(){
+  const id = document.getElementById('skill-id').value;
+  const name = document.getElementById('skill-name').value.trim();
+  let pct = parseInt(document.getElementById('skill-pct').value,10);
+  if(!name){ toast('Skill name is required.', true); return; }
+  pct = isNaN(pct)?0:Math.max(0,Math.min(100,pct));
+  if(id){ const s = data.skills.find(x=>x.id===id); s.name=name; s.pct=pct; }
+  else { data.skills.push({id:uid('s'),name,pct}); }
+  saveData(); renderSkills(); renderCV(); closeModal('modal-skill'); toast('Skill saved.');
+}
+function deleteSkill(id){
+  if(!confirm('Remove this skill?')) return;
+  data.skills = data.skills.filter(x=>x.id!==id);
+  saveData(); renderSkills(); renderCV(); toast('Skill removed.');
+}
+
+/* ============================================================
+   RENDER: PROJECTS
+   ============================================================ */
+let activeFilter = 'All';
+function renderProjectFilters(){
+  const cats = ['All','C++','Web','Database','Networking','Cybersecurity'];
+  document.getElementById('project-filters').innerHTML = cats.map(c=>
+    `<div class="filter-chip ${c===activeFilter?'active':''}" onclick="setFilter('${c}')">${c}</div>`
+  ).join('');
+}
+function setFilter(c){ activeFilter=c; renderProjectFilters(); renderProjects(); }
+function renderProjects(){
+  const wrap = document.getElementById('projects-list');
+  const list = activeFilter==='All'?data.projects:data.projects.filter(p=>p.category===activeFilter);
+  document.getElementById('add-project-btn-wrap').hidden = !isAdmin;
+  if(!list.length){ wrap.innerHTML = `<p style="color:var(--text-faint);grid-column:1/-1;">No projects in this category yet.</p>`; return; }
+  wrap.innerHTML = list.map(p=>`
+    <div class="proj-card glass rel">
+      ${isAdmin?`<div class="proj-admin-row">
+        <span class="admin-edit-btn" onclick="openProjectModal('${p.id}')" title="Edit"><svg class="icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+        <span class="admin-edit-btn" style="color:var(--danger);" onclick="deleteProject('${p.id}')" title="Delete">✕</span>
+      </div>`:''}
+      <div class="proj-thumb">${p.image?`<img src="${p.image}" alt="">`:`<svg class="icon" viewBox="0 0 24 24"><path d="M8 9l-5 3 5 3M16 9l5 3-5 3M13 5l-2 14"/></svg>`}</div>
+      <div class="proj-body">
+        <div class="proj-cat">${p.category}</div>
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <div class="proj-tech">${(p.tech||'').split(',').filter(Boolean).map(t=>`<span class="tech-tag">${t.trim()}</span>`).join('')}</div>
+        <div class="proj-links">
+          ${p.github?`<a href="${p.github}" target="_blank" rel="noopener">${iconSvg('github')} GitHub</a>`:''}
+          ${p.demo?`<a href="${p.demo}" target="_blank" rel="noopener">↗ Live Demo</a>`:''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+function openProjectModal(id){
+  document.getElementById('project-modal-title').textContent = id?'Edit Project':'Add Project';
+  document.getElementById('proj-id').value = id||'';
+  if(id){
+    const p = data.projects.find(x=>x.id===id);
+    document.getElementById('proj-title').value = p.title;
+    document.getElementById('proj-category').value = p.category;
+    document.getElementById('proj-desc').value = p.desc;
+    document.getElementById('proj-tech').value = p.tech;
+    document.getElementById('proj-github').value = p.github;
+    document.getElementById('proj-demo').value = p.demo;
+    document.getElementById('proj-image-data').value = p.image||'';
+  } else {
+    ['proj-title','proj-desc','proj-tech','proj-github','proj-demo','proj-image-data'].forEach(id2=>document.getElementById(id2).value='');
+    document.getElementById('proj-category').value='C++';
+  }
+  openModal('modal-project');
+}
+function saveProject(){
+  const id = document.getElementById('proj-id').value;
+  const title = document.getElementById('proj-title').value.trim();
+  if(!title){ toast('Project title is required.', true); return; }
+  const obj = {
+    title,
+    category: document.getElementById('proj-category').value,
+    desc: document.getElementById('proj-desc').value.trim() || 'Add a short description of this project here.',
+    tech: document.getElementById('proj-tech').value.trim(),
+    github: document.getElementById('proj-github').value.trim(),
+    demo: document.getElementById('proj-demo').value.trim(),
+    image: document.getElementById('proj-image-data').value
+  };
+  if(id){ Object.assign(data.projects.find(x=>x.id===id), obj); }
+  else { data.projects.push({id:uid('p'), ...obj}); }
+  saveData(); renderProjects(); closeModal('modal-project'); toast('Project saved.');
+}
+function deleteProject(id){
+  if(!confirm('Delete this project?')) return;
+  data.projects = data.projects.filter(x=>x.id!==id);
+  saveData(); renderProjects(); toast('Project deleted.');
+}
+
+/* ============================================================
+   RENDER: CERTIFICATIONS
+   ============================================================ */
+function renderCerts(){
+  const wrap = document.getElementById('cert-list');
+  wrap.innerHTML = data.certifications.map(c=>`
+    <div class="cert-card glass rel">
+      ${isAdmin?`<div class="proj-admin-row">
+        <span class="admin-edit-btn" onclick="openCertModal('${c.id}')" title="Edit"><svg class="icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+        <span class="admin-edit-btn" style="color:var(--danger);" onclick="deleteCert('${c.id}')" title="Delete">✕</span>
+      </div>`:''}
+      <div class="cert-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 15a5 5 0 100-10 5 5 0 000 10z"/><path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5"/></svg></div>
+      <h3>${c.title}</h3>
+      <div class="cert-org">${c.org}</div>
+      <a class="glow-btn btn-ghost btn-sm" href="${c.url}" target="_blank" rel="noopener">Verify Certificate ↗</a>
+    </div>
+  `).join('');
+}
+function openCertModal(id){
+  document.getElementById('cert-modal-title').textContent = id?'Edit Certificate':'Add Certificate';
+  document.getElementById('cert-id').value = id||'';
+  if(id){
+    const c = data.certifications.find(x=>x.id===id);
+    document.getElementById('cert-title').value = c.title;
+    document.getElementById('cert-org').value = c.org;
+    document.getElementById('cert-url').value = c.url;
+    document.getElementById('cert-file-data').value = c.file||'';
+  } else {
+    ['cert-title','cert-org','cert-url','cert-file-data'].forEach(i=>document.getElementById(i).value='');
+  }
+  openModal('modal-cert');
+}
+function saveCert(){
+  const id = document.getElementById('cert-id').value;
+  const title = document.getElementById('cert-title').value.trim() || 'Certificate Title (edit in admin)';
+  const url = document.getElementById('cert-url').value.trim();
+  if(!url){ toast('Verification URL is required.', true); return; }
+  const obj = { title, org: document.getElementById('cert-org').value.trim()||'Coursera', url, file: document.getElementById('cert-file-data').value };
+  if(id){ Object.assign(data.certifications.find(x=>x.id===id), obj); }
+  else { data.certifications.push({id:uid('c'), ...obj}); }
+  saveData(); renderCerts(); closeModal('modal-cert'); toast('Certificate saved.');
+}
+function deleteCert(id){
+  if(!confirm('Delete this certificate?')) return;
+  data.certifications = data.certifications.filter(x=>x.id!==id);
+  saveData(); renderCerts(); toast('Certificate deleted.');
+}
+
+/* ============================================================
+   RENDER: DOCUMENTS
+   ============================================================ */
+function renderDocs(){
+  const wrap = document.getElementById('doc-list');
+  if(!data.documents.length){ wrap.innerHTML = `<div class="glass" style="padding:30px;text-align:center;color:var(--text-faint);">No documents uploaded yet. Use "Upload Document" to add your CV, certificates or reports.</div>`; return; }
+  wrap.innerHTML = data.documents.map(d=>`
+    <div class="doc-row glass">
+      <div class="doc-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></div>
+      <div class="doc-info"><h4>${d.name}</h4><div class="doc-meta">${d.type} · ${d.date}</div></div>
+      <div class="doc-actions">
+        <a class="glow-btn btn-ghost btn-sm" href="${d.file}" target="_blank" rel="noopener">Preview</a>
+        <a class="glow-btn btn-primary btn-sm" href="${d.file}" download="${d.name}">Download</a>
+        ${isAdmin?`<span class="admin-edit-btn" style="position:static;color:var(--danger);" onclick="deleteDoc('${d.id}')" title="Delete">✕</span>`:''}
+      </div>
+    </div>
+  `).join('');
+}
+function handleDocFile(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const allowed = ['application/pdf','image/png','image/jpeg','image/jpg','image/webp','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+  if(!allowed.includes(file.type)){ toast('Unsupported file type.', true); return; }
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    document.getElementById('doc-file-data').value = reader.result;
+    document.getElementById('doc-file-name').value = file.name;
+  };
+  reader.readAsDataURL(file);
+}
+function saveDoc(){
+  const fileData = document.getElementById('doc-file-data').value;
+  const fileName = document.getElementById('doc-file-name').value;
+  if(!fileData){ toast('Please choose a file first.', true); return; }
+  data.documents.push({
+    id: uid('d'),
+    name: fileName,
+    type: document.getElementById('doc-type').value,
+    date: new Date().toISOString().slice(0,10),
+    file: fileData
+  });
+  saveData(); renderDocs(); closeModal('modal-doc');
+  document.getElementById('doc-file-data').value=''; document.getElementById('doc-file-name').value='';
+  toast('Document uploaded.');
+}
+function deleteDoc(id){
+  if(!confirm('Delete this document?')) return;
+  data.documents = data.documents.filter(x=>x.id!==id);
+  saveData(); renderDocs(); toast('Document deleted.');
+}
+
+/* ============================================================
+   RENDER: CV
+   ============================================================ */
+function renderCV(){
+  const p = data.profile, cv = data.cv;
+  const achievements = (cv.achievements||'').split('\n').filter(Boolean);
+  const languages = (cv.languages||'').split(',').map(s=>s.trim()).filter(Boolean);
+  const interests = (cv.interests||'').split(',').map(s=>s.trim()).filter(Boolean);
+
+  document.getElementById('cv-preview').innerHTML = `
+    <div class="cv-head">
+      ${p.photo?`<img src="${p.photo}" class="cv-photo" alt="">`:`<div class="cv-photo-ph">HA</div>`}
+      <div>
+        <h2>${p.name}</h2>
+        <div class="cv-title">${p.title}</div>
+        <div class="cv-contacts">
+          <span>${p.phone}</span><span>${p.email}</span><span>${p.linkedin.replace('http://','').replace('https://','')}</span>
+        </div>
+      </div>
+    </div>
+    <div class="cv-section"><h3>Professional Summary</h3><p>${cv.summary}</p></div>
+    <div class="cv-section"><h3>Career Objective</h3><p>${cv.objective}</p></div>
+    <div class="cv-section"><h3>Education</h3>
+      ${data.education.map(e=>`<div class="cv-item"><strong>${e.degree}</strong> — ${e.institution}<br><span style="font-size:12.5px;">${e.duration} · ${e.status}</span></div>`).join('')}
+    </div>
+    <div class="cv-section"><h3>Technical Skills</h3><div class="cv-skill-tags">${data.skills.map(s=>`<span class="cv-tag">${s.name} · ${s.pct}%</span>`).join('')}</div></div>
+    <div class="cv-section"><h3>Projects</h3>
+      ${data.projects.map(pr=>`<div class="cv-item"><strong>${pr.title}</strong> (${pr.category})<br><span style="font-size:13px;">${pr.desc}</span></div>`).join('')}
+    </div>
+    <div class="cv-section"><h3>Certifications</h3>
+      <ul style="margin:0;padding-left:18px;">${data.certifications.map(c=>`<li>${c.title} — ${c.org}</li>`).join('')}</ul>
+    </div>
+    ${achievements.length?`<div class="cv-section"><h3>Achievements</h3><ul style="margin:0;padding-left:18px;">${achievements.map(a=>`<li>${a}</li>`).join('')}</ul></div>`:''}
+    ${languages.length?`<div class="cv-section"><h3>Languages</h3><p>${languages.join(', ')}</p></div>`:''}
+    ${interests.length?`<div class="cv-section"><h3>Interests</h3><p>${interests.join(', ')}</p></div>`:''}
+    <div class="cv-section"><h3>Social Links</h3><p>${[p.linkedin,p.github].filter(Boolean).join(' · ')}</p></div>
+  `;
+}
+function openCvEditor(){
+  document.getElementById('cv-summary').value = data.cv.summary;
+  document.getElementById('cv-objective').value = data.cv.objective;
+  document.getElementById('cv-achievements').value = data.cv.achievements;
+  document.getElementById('cv-languages').value = data.cv.languages;
+  document.getElementById('cv-interests').value = data.cv.interests;
+  openModal('modal-cv-editor');
+}
+function saveCvDetails(){
+  data.cv.summary = document.getElementById('cv-summary').value.trim() || defaultData.cv.summary;
+  data.cv.objective = document.getElementById('cv-objective').value.trim() || defaultData.cv.objective;
+  data.cv.achievements = document.getElementById('cv-achievements').value;
+  data.cv.languages = document.getElementById('cv-languages').value;
+  data.cv.interests = document.getElementById('cv-interests').value;
+  saveData(); renderCV(); closeModal('modal-cv-editor'); toast('CV details updated.');
+}
+function downloadCV(e){
+  if(e) e.preventDefault();
+  document.getElementById('cv').scrollIntoView({behavior:'smooth'});
+  toast('Use "Print CV" and choose "Save as PDF" in the print dialog.');
+  setTimeout(()=>window.print(), 500);
+}
+function handleCvUpload(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    data.documents.push({id:uid('d'), name:file.name, type:'CV', date:new Date().toISOString().slice(0,10), file:reader.result});
+    saveData(); renderDocs();
+    toast('CV uploaded to Documents section.');
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ============================================================
+   GENERIC HELPERS
+   ============================================================ */
+function previewToField(e, fieldId){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{ document.getElementById(fieldId).value = reader.result; toast('File ready — click Save to apply.'); };
+  reader.readAsDataURL(file);
+}
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click', (e)=>{ if(e.target===m) m.classList.remove('open'); });
+});
+
+/* ============================================================
+   ADMIN AUTH
+   ============================================================ */
+let isAdmin = sessionStorage.getItem('ha_admin')==='1';
+
+function openAdminLogin(){
+  if(isAdmin){ openAdminDash(); return; }
+  document.getElementById('admin-pass-input').value='';
+  openModal('modal-admin-login');
+}
+function tryAdminLogin(){
+  const val = document.getElementById('admin-pass-input').value;
+  if(btoa(val) === data.profile.adminPasswordHash){
+    isAdmin = true;
+    sessionStorage.setItem('ha_admin','1');
+    closeModal('modal-admin-login');
+    document.getElementById('admin-bar').classList.add('on');
+    toast('Admin mode enabled.');
+    renderAll();
+  } else {
+    toast('Incorrect password.', true);
+  }
+}
+function logoutAdmin(){
+  isAdmin = false;
+  sessionStorage.removeItem('ha_admin');
+  document.getElementById('admin-bar').classList.remove('on');
+  toast('Exited admin mode.');
+  renderAll();
+}
+function openAdminDash(){
+  const p = data.profile;
+  document.getElementById('set-name').value = p.name;
+  document.getElementById('set-title').value = p.title;
+  document.getElementById('set-intro').value = p.intro;
+  document.getElementById('set-phone').value = p.phone;
+  document.getElementById('set-email').value = p.email;
+  document.getElementById('set-linkedin').value = p.linkedin;
+  document.getElementById('set-github').value = p.github;
+  document.getElementById('set-facebook').value = p.facebook;
+  document.getElementById('set-instagram').value = p.instagram;
+  document.getElementById('set-youtube').value = p.youtube;
+  document.getElementById('set-password').value = '';
+  openModal('modal-admin-dash');
+}
+function saveAdminSettings(){
+  const p = data.profile;
+  p.name = document.getElementById('set-name').value.trim() || p.name;
+  p.title = document.getElementById('set-title').value.trim() || p.title;
+  p.intro = document.getElementById('set-intro').value.trim() || p.intro;
+  p.phone = document.getElementById('set-phone').value.trim();
+  p.email = document.getElementById('set-email').value.trim();
+  p.linkedin = document.getElementById('set-linkedin').value.trim();
+  p.github = document.getElementById('set-github').value.trim();
+  p.facebook = document.getElementById('set-facebook').value.trim();
+  p.instagram = document.getElementById('set-instagram').value.trim();
+  p.youtube = document.getElementById('set-youtube').value.trim();
+  const newPass = document.getElementById('set-password').value;
+  if(newPass){ p.adminPasswordHash = btoa(newPass); }
+  saveData(); renderAll(); closeModal('modal-admin-dash'); toast('Settings saved.');
+}
+
+/* admin bar visibility on load */
+if(isAdmin) document.getElementById('admin-bar').classList.add('on');
+
+/* ============================================================
+   INITIAL RENDER
+   ============================================================ */
+function renderAll(){
+  renderProfile();
+  renderEducation();
+  renderSkills();
+  renderProjectFilters();
+  renderProjects();
+  renderCerts();
+  renderDocs();
+  renderCV();
+  document.querySelectorAll('.admin-only').forEach(el=>el.hidden = !isAdmin);
+}
+renderAll();
+</script>
+</body>
+</html>
